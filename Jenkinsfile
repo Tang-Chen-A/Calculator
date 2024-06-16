@@ -17,5 +17,12 @@ pipeline {
                 bat "mvn package"
             }
         }
+        stage('SonarQube Scan') {
+            steps {
+                withSonarQubeEnv('MySonarQube') {
+                    bat "mvn sonar:sonar -Dsonar.token=sqa_6e0a4053360631f4320643d0a39f3af2f62e911c"
+                }
+            }
+        }
     }
 }
